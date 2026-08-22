@@ -1,5 +1,7 @@
 using Exiled.API.Enums;
 using Exiled.API.Features;
+using Exiled.API.Interfaces;
+using Exiled.Loader;
 using L4SL.Feature;
 
 namespace L4SL;
@@ -26,5 +28,15 @@ public sealed class Main : Plugin<Config>
         LoggerManager?.RemoveAll();
 
         base.OnDisabled();
+    }
+    
+    public void SaveConfig()
+    {
+        var configs = new SortedDictionary<string, IConfig>();
+
+        foreach (var plugin in Loader.Plugins)
+            configs[plugin.Prefix] = plugin.Config;
+
+        ConfigManager.Save(configs);
     }
 }
