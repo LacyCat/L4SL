@@ -4,7 +4,7 @@ using CommandSystem;
 
 namespace L4SL.Commands;
 
-[CommandHandler(typeof(GameConsoleCommandHandler))]
+[CommandHandler(typeof(RemoteAdminCommandHandler))]
 public sealed class L4SLCommand : ParentCommand
 {
     public L4SLCommand() => LoadGeneratedCommands();
